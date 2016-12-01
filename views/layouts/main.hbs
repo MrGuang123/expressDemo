@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <title>首页</title>
     {{{_section.head}}}
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
     <header><img src="/img/circle.png" alt="logo"></header>
+    {{!--{{#if flash}}
+        <div class="alert alert-dismissible alert-{{flash.type}}">
+            <button class="close" type="button" data-dismiss="alert">&times;</button>
+            <strong>{{flash.intro}}</strong>{{{flash.message}}}
+        </div>
+    {{/if}}--}}
+
     {{{body}}}
     {{!--<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>--}}
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
     {{{_section.jquery}}}
 </body>
 </html>
