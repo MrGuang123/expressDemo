@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var http = require('http');
 var fortune = require('./lib/fortune.js');
 var bodyParser = require('body-parser');
 var formidable = require('formidable');
@@ -350,7 +351,20 @@ app.use(function (err, req, res, next) {
     res.render('404');
 })
 
-
-app.listen(app.get('port'), function () {
+//启动服务方法
+function startServer(){
+    http.createServer(app).listen(app.get('port'),function(){
+        console.log('express started on http:localhost:' + app.get('port') + ';press ctrl+c to terminate.');
+    })
+}
+/*app.listen(app.get('port'), function () {
     console.log('express started on http:localhost:' + app.get('port') + ';press ctrl+c to terminate.')
-})
+})*/
+
+if(require.main === module){
+    //应用程序直接执行，启动应用服务器
+    startServer();
+}else {
+    //应用程序作为一个模块可以通过require引入，然后创建服务器
+    module.exports = startServer;
+}
